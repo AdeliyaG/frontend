@@ -1,5 +1,4 @@
 $text-color: #626780;
-$white-color: #FFFFFF;
 
 * {
   margin: 0;
@@ -62,12 +61,14 @@ header {
   text-align: center;
   border-radius: 10px;
   padding: 16px 67px;
-  color: $white-color;
+  color: #FFFFFF;
   background: #9B9BCA;
   border: none;
-
-  &:hover {
+  outline: none;
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    background: #b2b2e8;
   }
 }
 
@@ -77,7 +78,7 @@ header {
   font-weight: 400;
   font-size: 20px;
   line-height: 34px;
-  color: $white-color;
+  color: #FFFFFF;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   padding: 19px 14px;
@@ -165,6 +166,9 @@ header {
   width: 265px;
   height: 270px;
   border: 1px solid transparent;
+  box-sizing: border-box;
+  will-change: auto;
+  transition: all 1s ease-in-out;
 
   h3 {
     font-weight: 500;
@@ -192,10 +196,8 @@ header {
   }
 
   &:hover {
-    transition-duration: 1s;
     cursor: default;
     border: 1px solid #9D9D9D;
-    box-sizing: border-box;
     border-radius: 5px;
     border-bottom: 7px solid #C4C4C4;
   }
@@ -234,7 +236,7 @@ footer {
   font-weight: 400;
   font-size: 20px;
   line-height: 34px;
-  color: $white-color;
+  color: #FFFFFF;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
   margin-right: 8px;
 }
@@ -256,7 +258,7 @@ footer {
     font-size: 20px;
     line-height: 30px;
     margin-bottom: 12px;
-    color: $white-color;
+    color: #FFFFFF;
   }
 
   a {
@@ -277,7 +279,7 @@ footer {
   line-height: 30px;
   display: flex;
   align-items: center;
-  color: $white-color;
+  color: #FFFFFF;
 }
 
 .copyright {
@@ -287,15 +289,26 @@ footer {
   div {
     display: inline-flex;
     align-items: center;
-    color: $white-color;
+    color: #FFFFFF;
   }
 }
 
 .sidebar {
+  display: grid;
   justify-items: center;
   align-content: center;
-  display: none;
-  //transition: height 0.5s linear;
+  position: absolute;
+  background-color: silver;
+  width: 100%;
+  overflow: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+  transition: all 0.5s ease-in-out;
+
+  a {
+    color: #FFFFFF;
+  }
 }
 
 .menu-icon img{
@@ -306,6 +319,9 @@ footer {
 }
 
 @media (max-width: 1105px) {
+  body {
+    width: fit-content;
+  }
   .wrapper {
     margin: 0 20px;
   }
@@ -317,22 +333,16 @@ footer {
   }
   .header-bg .wrapper {
     margin: auto;
+    position: relative;
   }
 
   .sidebar.active {
-    display: grid;
-    position: absolute;
-    background-color: silver;
-    width: 100%;
-    a {
-      color: $white-color;
-    }
-    //transition: height 0.5s linear;
+    transform: scaleY(1);
   }
 
   .nav-item {
     line-height: 125px;
-    font-size: 45px;
+    font-size: 30px;
   }
 
   .grid {
@@ -374,7 +384,7 @@ footer {
 
     h3 {
       max-width: 100%;
-      font-size: 60px;
+      font-size: 45px;
       padding: 20px 0;
     }
 
@@ -386,14 +396,15 @@ footer {
   }
 
   .title {
-    font-size: 66px;
     width: 70%;
-    margin-top: 130px
+    margin-top: 70px;
+    font-size: 40px;
   }
 
   .description {
-    font-size: 25px;
+    font-size: 18px;
     line-height: 30px;
+    width: unset;
   }
 
   .main {
