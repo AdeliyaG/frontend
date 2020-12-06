@@ -28,7 +28,7 @@
 }
 
 @mixin btn {
-  min-height: 40px;
+  height: 40px;
   @include text-style;
   background-color: transparent;
   text-transform: uppercase;
@@ -37,13 +37,22 @@
   cursor: pointer;
   outline: none;
   text-align: center;
+  line-height: 40px;
 
-  &:hover {
+  div {
     background-color: #f0c52e;
+    height: 8px;
+    position: absolute;
+    top: 16px;
+    z-index: -1;
+    width: inherit;
+    transition: 0.3s ease-out;
   }
-  &:focus {
-    color: #f7e296;
-    background-color: black;
+
+  &:hover > div,
+  &:focus > div {
+    top: 0;
+    height: 40px;
   }
 }
 
@@ -89,11 +98,21 @@ ul {
 
 .logo img {
   padding-top: 20px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active,
+  &:focus {
+    opacity: 0.3;
+  }
 }
 
 .header-top {
   margin-top: 23px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   font-weight: 300;
   font-size: 15px;
@@ -107,13 +126,45 @@ ul {
     li:first-child {
       margin-right: 220px;
     }
+
+    li {
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:active,
+      &:focus {
+        opacity: 0.3;
+      }
+    }
   }
 
   &__search {
-    margin-left: 20px;
-    background-color: transparent;
-    border: none;
+    //label::before {
+    //  content: url("../asserts/svg/search.svg");
+    //}
+
+    input {
+      margin-left: 20px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:active,
+      &:focus {
+        border-bottom: 2px solid black;
+      }
+    }
+
+    &::before {
+      content: url("../asserts/svg/search.svg");
+    }
   }
+
 
   &__sign-in::before {
     content: url("../asserts/svg/user.svg");
@@ -162,6 +213,17 @@ ul {
 
     li:last-child {
       margin-left: 105px;
+    }
+
+    li {
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:active,
+      &:focus {
+        opacity: 0.3;
+      }
     }
   }
 }
@@ -212,13 +274,17 @@ ul {
         display: flex;
         justify-content: space-between;
         margin-top: 50px;
+        height: 40px;
 
         a {
-          padding: 0 45px;
-          @include text-style;
-          background-color: #f7e296;
-          text-transform: uppercase;
-          letter-spacing: $letter-spacing;
+          width: 220px;
+          position: relative;
+          @include btn;
+
+          &:active,
+          &:focus {
+            color: rgba(0, 0, 0, 0.302);
+          }
         }
       }
 
@@ -270,11 +336,21 @@ ul {
       width: 160px;
       height: 160px;
       cursor: pointer;
+      transition: 0.3s;
 
       a {
         position: absolute;
         width: inherit;
         margin-top: 192px;
+      }
+
+      &:hover {
+        background-color: #f0c52e;
+      }
+
+      &:active,
+      &:focus {
+        opacity: 0.3;
       }
     }
 
@@ -312,7 +388,7 @@ ul {
   display: flex;
 
   &__list {
-    min-width: 277px;
+    width: 277px;
     border-right: 6px solid;
     padding-top: 80px;
     padding-bottom: 43px;
@@ -323,20 +399,22 @@ ul {
 
       button {
         width: 160px;
+        position: relative;
         @include btn;
 
-        &:hover {
-          background-color: #f0c52e;
-        }
-
+        &:active,
         &:focus {
           color: #f7e296;
+        }
+
+        &:active > div,
+        &:focus > div {
+          width: 277px;
           background-color: black;
         }
       }
     }
   }
-
 
   &__type {
     display: flex;
@@ -361,13 +439,13 @@ ul {
     }
   }
 
-  .sections-bg {
+  &__bg {
     margin-top: 100px;
     width: 100% !important;
     height: 288px;
     background-color: #e5e5e5;
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     left: 0;
   }
 }
@@ -380,6 +458,38 @@ ul {
 
   li {
     list-style: none;
+  }
+
+  .partner-1::before {
+    content: url("../asserts/img/logo-1.png");
+  }
+
+  .partner-1:hover::before {
+    content: url("../asserts/img/logo-1 hover.png");
+  }
+
+  .partner-2::before {
+    content: url("../asserts/img/logo-2.png");
+  }
+
+  .partner-2:hover::before {
+    content: url("../asserts/img/logo-2 hover.png");
+  }
+
+  .partner-3::before {
+    content: url("../asserts/img/logo-3.png");
+  }
+
+  .partner-3:hover::before {
+    content: url("../asserts/img/logo-3 hover.png");
+  }
+
+  .partner-4::before {
+    content: url("../asserts/img/logo-4.png");
+  }
+
+  .partner-4:hover::before {
+    content: url("../asserts/img/logo-4 hover.png");
   }
 }
 
@@ -423,7 +533,6 @@ ul {
   ul {
     margin-top: 64px;
     line-height: 2.2;
-    margin-bottom: 68px;
 
     li {
       @include text-style;
@@ -433,21 +542,33 @@ ul {
   }
 
   a {
+    width: 260px;
+    position: absolute;
+    bottom: 0;
     @include btn;
-    padding: 0 20px;
+
+    &:active,
+    &:focus {
+      color: rgba(0, 0, 0, 0.302);
+    }
   }
 }
 
 .contacts {
   margin-left: 35px;
-
-  img {
-    margin-bottom: 68px;
-  }
+  position: relative;
 
   button {
+    width: 220px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     @include btn;
-    padding: 0 40px;
+
+    &:active,
+    &:focus {
+      color: rgba(0, 0, 0, 0.302);
+    }
   }
 }
 
