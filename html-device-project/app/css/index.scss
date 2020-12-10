@@ -140,9 +140,8 @@ ul {
   }
 
   &__search {
-    //label::before {
-    //  content: url("../asserts/svg/search.svg");
-    //}
+    height: 35px;
+    box-sizing: border-box;
 
     input {
       margin-left: 20px;
@@ -153,15 +152,35 @@ ul {
       &:hover {
         opacity: 0.6;
       }
-
-      &:active,
-      &:focus {
-        border-bottom: 2px solid black;
-      }
     }
 
     &::before {
       content: url("../asserts/svg/search.svg");
+    }
+
+    button {
+      display: none;
+      background-color: transparent;
+      border: 2px solid black;
+      padding: 15px 20px;
+      outline: none;
+      position: absolute;
+      bottom: 58px;
+      cursor: pointer;
+
+      &:hover {
+        color: white;
+        background-color: black;
+      }
+
+      &:active,
+      &:focus {
+        opacity: 0.8;
+      }
+
+      &.active {
+        display: inline;
+      }
     }
   }
 
@@ -188,7 +207,7 @@ ul {
 
 .header-main {
   font-family: "Gilroy", serif;
-  margin-top: 40px;
+  margin-top: 35px;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 18px;
@@ -278,8 +297,9 @@ ul {
 
   &__img {
     display: flex;
-    margin-top: auto;
+    height: fit-content;
     margin-left: 30px;
+    margin-top: 53px;
     user-select: none;
   }
 
@@ -319,7 +339,7 @@ ul {
       &__nav {
         display: flex;
         justify-content: space-between;
-        margin-top: 50px;
+        margin-top: 45px;
         height: 40px;
 
         a {
@@ -335,6 +355,7 @@ ul {
       }
 
       &__buttons {
+        align-self: center;
         input {
           margin-right: 20px;
         }
@@ -343,7 +364,7 @@ ul {
       &__details {
         display: flex;
         justify-content: space-between;
-        margin-top: 65px;
+        margin-top: 50px;
         margin-right: 73px;
 
         li {
@@ -515,6 +536,7 @@ ul {
 
   li {
     list-style: none;
+    width: 25%;
   }
 
   .partner-1::before {
@@ -620,7 +642,7 @@ ul {
   }
 
   button {
-    width: 220px;
+    width: 260px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -679,6 +701,8 @@ footer {
     }
 
     .logo {
+      padding: 0;
+
       &:hover {
         opacity: 0.7;
       }
@@ -691,7 +715,7 @@ footer {
   }
 
   .footer-center {
-    margin-top: 25px;
+    margin-top: 20px;
     line-height: 2;
 
     li {
