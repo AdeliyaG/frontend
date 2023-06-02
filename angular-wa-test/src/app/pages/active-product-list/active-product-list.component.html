@@ -1,0 +1,29 @@
+<div class="active-product-list">
+  <h1 class="text-center mb-3">Список покупочек</h1>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Что нужно купить:</h2>
+    <button 
+      class="btn btn-light btn-sm h-25" 
+      (click)="removeAll()"
+    >Очистить</button>
+  </div>
+
+  <div
+    *ngIf="isLoading | async; else elseBlock"
+    class="d-flex justify-content-center mt-5"
+  >
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <ng-template #elseBlock>
+    <product-list 
+      [props]="props" 
+      class="w-100"
+      (onRemove)="removeProduct($event)"
+      (onCheck)="checkProduct($event)"
+    ></product-list>
+  </ng-template>
+</div>

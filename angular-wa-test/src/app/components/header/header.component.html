@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between">
+  <nav>
+    <a
+      class="btn me-2"
+      [ngClass]="currentPage === '/active' ? 'btn-success' : 'btn-outline-success'"
+      routerLink="/active"
+      role="button"
+    >Что купить</a>
+    <a 
+      class="btn" 
+      [ngClass]="currentPage !== '/active' ? 'btn-success' : 'btn-outline-success'"
+      routerLink="/product-list" role="button"
+    >Список продуктов</a>
+  </nav>
+  <button
+    *ngIf="currentPage === '/active'"
+    class="btn btn-primary"
+    type="submit"
+    (click)="onAddProductBtnClick()"
+  >
+    Добавить продукт
+  </button>
+</div>

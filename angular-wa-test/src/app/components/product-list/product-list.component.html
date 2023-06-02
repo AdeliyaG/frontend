@@ -1,0 +1,41 @@
+<div class="product-list">
+  <ul 
+    *ngIf="props?.products?.length; else elseBlock"
+    class="list-group"
+  >
+    <li
+      *ngFor="let product of props?.products"
+      class="list-group-item d-flex justify-content-between p-2"
+      (click)="onProductClick(product.id)"
+    >
+      <div>
+        <input
+          *ngIf="props?.isActive"
+          class="form-check-input ms-1"
+          type="checkbox"
+          value=""
+          [id]="product.id"
+          [checked]="product.done"
+        />
+        <label
+          class="form-check-label ps-2"
+          [ngClass]="{ 'text-decoration-line-through': product.done }"
+          [for]="product.id"
+        >
+          {{ product.name }}
+        </label>
+        <span *ngIf="props?.isActive" class="text-secondary">
+          &ndash; {{ product.count }} шт.</span
+        >
+      </div>
+      <button 
+        class="btn btn-outline-danger btn-sm py-0" 
+        (click)="onProductRemove($event, product.id)"
+      >Удалить</button>
+    </li>
+  </ul>
+
+  <ng-template #elseBlock>
+    <p>В списке нет продуктов :&#40;</p>
+  </ng-template>
+</div>
